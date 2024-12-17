@@ -1,0 +1,43 @@
+---
+title: 'Venue Analytics'
+openapi: 'GET /venues/analytics'
+description: 'Get AI-powered insights on venue trends and patterns'
+---
+
+This endpoint provides detailed analytics about venues, including pricing trends, availability patterns, and booking windows. The AI analyzes historical data to provide actionable insights for event planning.
+
+### Query Parameters
+
+<ParamField query="location" type="string">
+  Filter by city or region
+</ParamField>
+
+<ParamField query="venue_type" type="string">
+  Filter by venue type
+</ParamField>
+
+<ParamField query="date_range" type="string">
+  Analysis period (e.g., "last_6_months", "next_year")
+</ParamField>
+
+### Response Format
+
+```json
+{
+  "pricing_trends": {
+    "average_rate": 5000,
+    "seasonal_variations": {...},
+    "year_over_year_change": 0.05
+  },
+  "availability_patterns": {
+    "peak_months": ["June", "September"],
+    "typical_lead_time": 120,
+    "booking_window_trends": {...}
+  },
+  "market_insights": {
+    "demand_score": 8.5,
+    "competitive_analysis": {...},
+    "price_sensitivity": "medium"
+  }
+}
+``` 

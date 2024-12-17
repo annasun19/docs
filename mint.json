@@ -83,6 +83,17 @@
         "api-reference/endpoint/request-proposal",
         "api-reference/endpoint/venue-feedback"
       ]
+    },
+    {
+      "group": "Event Agencies",
+      "pages": [
+        "api-reference/endpoint/estimate-event",
+        "api-reference/endpoint/venue-analytics"
+      ]
+    },
+    {
+      "group": "Batch Operations",
+      "pages": ["api-reference/endpoint/batch-create-events"]
     }
   ],
   "footerSocials": {

@@ -1,0 +1,73 @@
+---
+title: 'Estimate Event Costs'
+openapi: 'POST /events/estimate'
+description: 'Get AI-powered cost estimates for your entire event based on historical data'
+---
+
+This endpoint provides comprehensive cost estimates for your event by analyzing our database of past events and venues. Our AI considers factors like seasonality, location premiums, and similar event histories to provide detailed cost breakdowns.
+
+### Required Fields
+
+<ParamField body="event_type" type="string" required>
+  Type of event (e.g., "corporate", "wedding", "conference")
+</ParamField>
+
+<ParamField body="guest_count" type="integer" required>
+  Expected number of attendees
+</ParamField>
+
+<ParamField body="location" type="string" required>
+  City or region for the event
+</ParamField>
+
+<ParamField body="start_date" type="datetime" required>
+  Event start date (UTC)
+</ParamField>
+
+<ParamField body="duration_days" type="integer" required>
+  Number of event days
+</ParamField>
+
+### Optional Fields
+
+<ParamField body="requirements" type="object">
+  Event requirements and preferences
+  ```json
+  {
+    "venue_type": "hotel",
+    "meeting_rooms_needed": 3,
+    "catering_required": true,
+    "av_equipment_needed": true,
+    "hotel_rooms_needed": 100
+  }
+  ```
+</ParamField>
+
+<ParamField body="service_level" type="string">
+  Desired service level ("standard", "premium", "luxury")
+</ParamField>
+
+### Response Format
+
+```json
+{
+  "total_estimated_cost": 85000,
+  "breakdown": {
+    "venue": 45000,
+    "catering": 20000,
+    "av_equipment": 8000,
+    "hotel_rooms": 12000
+  },
+  "confidence_score": 0.85,
+  "similar_events": 12,
+  "cost_factors": {
+    "seasonal_adjustment": 1.2,
+    "location_premium": 1.15,
+    "day_of_week_impact": -0.05
+  },
+  "cost_range": {
+    "low": 75000,
+    "high": 95000
+  }
+}
+``` 

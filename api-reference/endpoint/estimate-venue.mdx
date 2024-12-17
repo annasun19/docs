@@ -1,0 +1,46 @@
+---
+title: 'Estimate Venue Costs'
+openapi: 'POST /venues/estimate'
+description: 'Get AI-powered cost estimates based on historical venue data'
+---
+
+This endpoint provides cost estimates for venues based on historical data and your event requirements. The AI analyzes past bookings, seasonal trends, and market rates to give you accurate predictions.
+
+### Required Fields
+
+<ParamField body="venue_type" type="string" required>
+  Type of venue (e.g., "hotel", "convention_center", "resort")
+</ParamField>
+
+<ParamField body="location" type="string" required>
+  City or region for the venue
+</ParamField>
+
+<ParamField body="guest_count" type="integer" required>
+  Expected number of attendees
+</ParamField>
+
+<ParamField body="event_type" type="string" required>
+  Type of event (e.g., "corporate", "wedding", "conference")
+</ParamField>
+
+<ParamField body="start_date" type="datetime" required>
+  Event start date (UTC)
+</ParamField>
+
+### Optional Fields
+
+<ParamField body="duration_days" type="integer">
+  Number of event days (defaults to 1)
+</ParamField>
+
+<ParamField body="requirements" type="object">
+  Specific venue requirements
+  ```json
+  {
+    "meeting_rooms": 3,
+    "ballroom": true,
+    "outdoor_space": false
+  }
+  ```
+</ParamField> 
