@@ -1,29 +1,29 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Nowadays API",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#3646A4",
+    "light": "#D4DEF8",
+    "dark": "#495DC6",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#848CCE",
+      "to": "#3646A4"
     }
   },
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "mailto:founders@getnowadays.com"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "url": "https://getnowadays.com"
   },
   "tabs": [
     {
@@ -35,57 +35,58 @@
     {
       "name": "Documentation",
       "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "url": "https://docs.getnowadays.com"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "name": "Email Us",
+      "icon": "info",
+      "url": "mailto:founders@getnowadays.com"
     },
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://getnowadays.com/blog"
+    },
+    {
+      "name": "Case Studies",
+      "icon": "users",
+      "url": "https://getnowadays.com/case-studies"
+    },
+    {
+      "name": "LinkedIn",
+      "icon": "linkedin",
+      "url": "https://www.linkedin.com/company/getnowadays"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
-      "pages": [
-        "introduction",
-        "quickstart",
-        "development"
-      ]
-    },
-    {
-      "group": "Essentials",
-      "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
-      ]
+      "pages": ["introduction", "quickstart", "development"]
     },
     {
       "group": "API Documentation",
+      "pages": ["api-reference/introduction"]
+    },
+    {
+      "group": "Events",
       "pages": [
-        "api-reference/introduction"
+        "api-reference/endpoint/create-event",
+        "api-reference/endpoint/update-event",
+        "api-reference/endpoint/delete-event",
+        "api-reference/endpoint/list-venues",
+        "api-reference/endpoint/get-quotes"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Venues",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/endpoint/request-proposal",
+        "api-reference/endpoint/venue-feedback"
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
+    "x": "https://x.com/NowadaysAI",
+    "linkedin": "https://linkedin.com/company/getnowadays"
   }
 }

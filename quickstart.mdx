@@ -1,86 +1,95 @@
 ---
 title: 'Quickstart'
-description: 'Start building awesome documentation in under 5 minutes'
+description: 'Start using the Nowadays API in under 5 minutes'
 ---
 
-## Setup your development
+## Getting Started
 
-Learn how to update your docs locally and deploy them to the public.
+Follow these steps to begin using the Nowadays API for your event venue sourcing needs.
 
-### Edit and preview
+### Authentication
 
 <AccordionGroup>
-  <Accordion icon="github" title="Clone your docs locally">
-    During the onboarding process, we created a repository on your Github with
-    your docs content. You can find this repository on our
-    [dashboard](https://dashboard.mintlify.com). To clone the repository
-    locally, follow these
-    [instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-    in your terminal.
+  <Accordion icon="key" title="Get your API key">
+    To access the Nowadays API, you'll need an API key. Contact our team at
+    founders@getnowadays.com to get your API credentials. Keep your API key
+    secure and never share it publicly.
   </Accordion>
-  <Accordion icon="rectangle-terminal" title="Preview changes">
-    Previewing helps you make sure your changes look as intended. We built a
-    command line interface to render these changes locally. 1. Install the
-    [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the
-    documentation changes locally with this command: ``` npm i -g mintlify ```
-    2. Run the following command at the root of your documentation (where
-    `mint.json` is): ``` mintlify dev ```
+  <Accordion icon="lock" title="Using your API key">
+    Include your API key in the Authorization header of all requests:
+    ```bash
+    Authorization: Bearer YOUR_API_KEY
+    ```
   </Accordion>
 </AccordionGroup>
 
-### Deploy your changes
+### Your First API Request
 
 <AccordionGroup>
+<Accordion icon="calendar" title="Create your first event">
+  Start by creating an event to begin the venue sourcing process:
 
-<Accordion icon="message-bot" title="Install our Github app">
-  Our Github app automatically deploys your changes to your docs site, so you
-  don't need to manage deployments yourself. You can find the link to install on
-  your [dashboard](https://dashboard.mintlify.com). Once the bot has been
-  successfully installed, there should be a check mark next to the commit hash
-  of the repo.
+  ```bash
+  curl -X POST https://api.getnowadays.com/events \
+    -H "Authorization: Bearer YOUR_API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "name": "Q4 Company Offsite",
+      "venue_type": "Hotel",
+      "event_type": "Corporate Retreat",
+      "start_date": "2024-10-15T00:00:00Z",
+      "end_date": "2024-10-17T00:00:00Z",
+      "location": "Miami, FL",
+      "budget": 50000,
+      "num_people": 100,
+      "num_hotel_rooms_needed": 50,
+      "decision_deadline": "2024-08-01T00:00:00Z"
+    }'
+  ```
 </Accordion>
-<Accordion icon="rocket" title="Push your changes">
-  [Commit and push your changes to
-  Git](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository#about-git-push)
-  for your changes to update in your docs site. If you push and don't see that
-  the Github app successfully deployed your changes, you can also manually
-  update your docs through our [dashboard](https://dashboard.mintlify.com).
+<Accordion icon="building" title="Get venue options">
+  Once your event is created, you can retrieve venue options:
+  ```bash
+  curl https://api.getnowadays.com/events/{eventId}/venues \
+    -H "Authorization: Bearer YOUR_API_KEY"
+  ```
 </Accordion>
-
 </AccordionGroup>
 
-## Update your docs
+## Next Steps
 
-Add content directly in your files with MDX syntax and React components. You can use any of our components, or even build your own.
+Learn how to make the most of the Nowadays API.
 
 <CardGroup>
-
-<Card title="Style Your Docs" icon="paintbrush" href="/settings/global">
-  Add flair to your docs with personalized branding.
+<Card
+  title="Explore the API"
+  icon="book-open"
+  href="/api-reference/introduction"
+>
+  View our complete API reference documentation
 </Card>
 
 <Card
-  title="Add API Endpoints"
-  icon="square-code"
-  href="/api-playground/configuration"
+  title="Manage Events"
+  icon="calendar-days"
+  href="/api-reference/endpoint/create-event"
 >
-  Implement your OpenAPI spec and enable API user interaction.
+  Learn about all event management endpoints
 </Card>
 
 <Card
-  title="Integrate Analytics"
-  icon="chart-mixed"
-  href="/analytics/supported-integrations"
+  title="Handle Venues"
+  icon="building-columns"
+  href="/api-reference/endpoint/request-proposal"
 >
-  Draw insights from user interactions with your documentation.
+  Discover how to work with venue proposals
 </Card>
 
 <Card
-  title="Host on a Custom Domain"
-  icon="browser"
-  href="/settings/custom-domain/subdomain"
+  title="Track Quotes"
+  icon="receipt"
+  href="/api-reference/endpoint/get-quotes"
 >
-  Keep your docs on your own website's subdomain.
+  Learn how to manage venue quotes
 </Card>
-
 </CardGroup>

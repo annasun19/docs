@@ -1,0 +1,89 @@
+---
+title: 'Create Event'
+openapi: 'POST /events'
+description: 'Create a new event in the Nowadays system'
+---
+
+This endpoint creates a new event in the Nowadays system. Once created, AI will automatically start adding venues from our database of 400K+ venues to find the ones that fit your criteria. The user that created the event will receive an email with the results within 24 hours.
+
+### Required Fields
+
+<ParamField body="name" type="string" required>
+  The name of your event
+</ParamField>
+
+<ParamField body="venue_type" type="string" required>
+  The type of venue you're looking for
+</ParamField>
+
+<ParamField body="event_type" type="string" required>
+  The type or category of your event
+</ParamField>
+
+<ParamField body="start_date" type="datetime" required>
+  Event start date and time (UTC)
+</ParamField>
+
+<ParamField body="end_date" type="datetime" required>
+  Event end date and time (UTC)
+</ParamField>
+
+<ParamField body="location" type="string" required>
+  Desired location for the event
+</ParamField>
+
+<ParamField body="budget" type="number" required>
+  Total budget for the event
+</ParamField>
+
+<ParamField body="num_people" type="integer" required>
+  Expected number of attendees
+</ParamField>
+
+<ParamField body="num_hotel_rooms_needed" type="integer" required>
+  Number of hotel rooms required
+</ParamField>
+
+<ParamField body="decision_deadline" type="datetime" required>
+  Deadline for making the venue decision
+</ParamField>
+
+### Contact Information
+
+<ParamField body="email" type="string" required>
+  Contact email address
+</ParamField>
+
+<ParamField body="first_name" type="string" required>
+  Contact first name
+</ParamField>
+
+<ParamField body="last_name" type="string" required>
+  Contact last name
+</ParamField>
+
+<ParamField body="company" type="string" required>
+  Company name
+</ParamField>
+
+### Optional Fields
+
+<ParamField body="other_notes" type="string">
+  Additional requirements or preferences
+</ParamField>
+
+<ParamField body="meeting_rooms" type="string">
+  Meeting room requirements
+</ParamField>
+
+<ParamField body="food_beverage_requirements" type="string">
+  Specific food and beverage needs
+</ParamField>
+
+<ParamField body="start_time" type="string">
+  Start time (for single-day events)
+</ParamField>
+
+<ParamField body="end_time" type="string">
+  End time (for single-day events)
+</ParamField>

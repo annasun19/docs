@@ -1,0 +1,69 @@
+---
+title: "Update Event"
+openapi: "PUT /events/{eventId}"
+description: "Update an existing event's details"
+---
+
+Update the details of an existing event. You can modify any of the fields that were set during event creation.
+
+### Path Parameters
+
+<ParamField path="eventId" type="string" required>
+  The ID of the event to update
+</ParamField>
+
+### Required Fields
+
+<ParamField body="name" type="string" required>
+  The name of your event
+</ParamField>
+
+<ParamField body="venue_type" type="string" required>
+  The type of venue you're looking for
+</ParamField>
+
+<ParamField body="event_type" type="string" required>
+  The type or category of your event
+</ParamField>
+
+<ParamField body="start_date" type="datetime" required>
+  Event start date and time (UTC)
+</ParamField>
+
+<ParamField body="end_date" type="datetime" required>
+  Event end date and time (UTC)
+</ParamField>
+
+<ParamField body="location" type="string" required>
+  Desired location for the event
+</ParamField>
+
+<ParamField body="budget" type="number" required>
+  Total budget for the event
+</ParamField>
+
+<ParamField body="num_people" type="integer" required>
+  Expected number of attendees
+</ParamField>
+
+<ParamField body="num_hotel_rooms_needed" type="integer" required>
+  Number of hotel rooms required
+</ParamField>
+
+<ParamField body="decision_deadline" type="datetime" required>
+  Deadline for making the venue decision
+</ParamField>
+
+### Optional Fields
+
+<ParamField body="other_notes" type="string">
+  Additional requirements or preferences
+</ParamField>
+
+<ParamField body="meeting_rooms" type="string">
+  Meeting room requirements
+</ParamField>
+
+<ParamField body="food_beverage_requirements" type="string">
+  Specific food and beverage needs
+</ParamField> 

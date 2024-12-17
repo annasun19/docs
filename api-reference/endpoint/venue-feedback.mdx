@@ -1,0 +1,36 @@
+---
+title: 'Update Venue Feedback'
+openapi: 'POST /events/{eventId}/venues/{venueId}/feedback'
+description: 'Add or update feedback for a venue'
+---
+
+Add or update your feedback for a specific venue within an event. This includes the ability to like/unlike a venue and add comments.
+
+### Path Parameters
+
+<ParamField path="eventId" type="string" required>
+  The ID of your event
+</ParamField>
+
+<ParamField path="venueId" type="string" required>
+  The ID of the venue
+</ParamField>
+
+### Request Body
+
+<ParamField body="liked" type="boolean">
+  Set to true to like the venue, false to unlike
+</ParamField>
+
+<ParamField body="comment" type="string">
+  Your feedback or comments about the venue
+</ParamField>
+
+### Example Request
+
+```json
+{
+  "liked": true,
+  "comment": "Love the outdoor space and the natural lighting in the main hall."
+}
+``` 

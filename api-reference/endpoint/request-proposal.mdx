@@ -1,0 +1,27 @@
+---
+title: 'Request Venue Proposal'
+openapi: 'POST /venues/request-proposal'
+description: 'Request a proposal from a specific venue'
+---
+
+Request a proposal from a specific venue for your event. You can identify the venue using either a venue ID or a combination of venue name and city.
+
+### Required Fields
+
+<ParamField body="event_id" type="string" required>
+  The ID of your event
+</ParamField>
+
+### Venue Identification (one of the following is required)
+
+<ParamField body="venue_id" type="string">
+  Unique identifier of the venue (if known)
+</ParamField>
+
+<ParamField body="venue_name" type="string">
+  Name of the venue (required if venue_id is not provided)
+</ParamField>
+
+<ParamField body="city" type="string">
+  City where the venue is located (required if venue_id is not provided)
+</ParamField> 

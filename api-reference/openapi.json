@@ -1,16 +1,13 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
+    "title": "Nowadays API",
+    "description": "API documentation for managing events and venue proposals in the Nowadays system",
     "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "https://api.getnowadays.com"
     }
   ],
   "security": [
@@ -19,76 +16,33 @@
     }
   ],
   "paths": {
-    "/plants": {
-      "get": {
-        "description": "Returns all plants from the system that the user has access to",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
+    "/events": {
       "post": {
-        "description": "Creates a new plant in the store",
+        "summary": "Create Event",
+        "description": "Creates a new event in the Nowadays system",
         "requestBody": {
-          "description": "Plant to add to the store",
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "$ref": "#/components/schemas/EventRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
-            "description": "plant response",
+            "description": "Event created successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "type": "object",
+                  "properties": {
+                    "event_id": {
+                      "type": "string",
+                      "description": "Unique identifier for the created event"
+                    }
+                  }
                 }
               }
             }
@@ -96,35 +50,186 @@
         }
       }
     },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
+    "/events/{eventId}/venues": {
+      "get": {
+        "summary": "List Venue Options",
+        "description": "Returns all available venues for a specific event",
         "parameters": [
           {
-            "name": "id",
+            "name": "eventId",
             "in": "path",
-            "description": "ID of plant to delete",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of venues",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VenueOption"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events/{eventId}/quotes": {
+      "get": {
+        "summary": "Get Venue Quotes",
+        "description": "Returns quotes for all venues associated with an event",
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of venue quotes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VenueQuote"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/venues/request-proposal": {
+      "post": {
+        "summary": "Request Venue Proposal",
+        "description": "Request a proposal from a specific venue for an event",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProposalRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Proposal request successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "venue_id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events/{eventId}": {
+      "put": {
+        "summary": "Update Event",
+        "description": "Update an existing event's details",
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Event updated successfully"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Event",
+        "description": "Delete an existing event",
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
         "responses": {
           "204": {
-            "description": "Plant deleted",
-            "content": {}
+            "description": "Event deleted successfully"
+          }
+        }
+      }
+    },
+    "/events/{eventId}/venues/{venueId}/feedback": {
+      "post": {
+        "summary": "Update Venue Feedback",
+        "description": "Add or update feedback for a specific venue within an event",
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
+          {
+            "name": "venueId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VenueFeedback"
               }
             }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Feedback updated successfully"
           }
         }
       }
@@ -132,55 +237,103 @@
   },
   "components": {
     "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
+      "EventRequest": {
         "type": "object",
+        "required": [
+          "name",
+          "venue_type",
+          "event_type",
+          "start_date",
+          "end_date",
+          "location",
+          "budget",
+          "num_people",
+          "num_hotel_rooms_needed",
+          "decision_deadline",
+          "email",
+          "first_name",
+          "last_name",
+          "company"
+        ],
         "properties": {
           "name": {
-            "description": "The name of the plant",
+            "type": "string",
+            "description": "Name of the event"
+          },
+          "venue_type": {
+            "type": "string",
+            "description": "Type of venue required"
+          },
+          "event_type": {
+            "type": "string",
+            "description": "Type/category of the event"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start date and time in UTC"
+          }
+        }
+      },
+      "VenueOption": {
+        "type": "object",
+        "properties": {
+          "venue_id": {
             "type": "string"
           },
-          "tag": {
-            "description": "Tag to specify the type",
+          "name": {
+            "type": "string"
+          },
+          "city": {
             "type": "string"
           }
         }
       },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          }
-        ]
-      },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
+      "VenueQuote": {
         "type": "object",
         "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
+          "venue_id": {
             "type": "string"
+          },
+          "venue_name": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "quote_total": {
+            "type": "number"
+          }
+        }
+      },
+      "ProposalRequest": {
+        "type": "object",
+        "required": ["event_id"],
+        "properties": {
+          "venue_id": {
+            "type": "string"
+          },
+          "venue_name": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "event_id": {
+            "type": "string"
+          }
+        }
+      },
+      "VenueFeedback": {
+        "type": "object",
+        "properties": {
+          "liked": {
+            "type": "boolean",
+            "description": "Whether the venue is liked or not"
+          },
+          "comment": {
+            "type": "string",
+            "description": "Feedback comment about the venue"
           }
         }
       }
