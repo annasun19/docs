@@ -30,7 +30,7 @@ Follow these steps to begin using the Nowadays API for your event venue sourcing
   Start by creating an event to begin the venue sourcing process:
 
   ```bash
-  curl -X POST https://api.getnowadays.com/events \
+  curl -X POST https://getnowadays.com/api/northstar/events \
     -H "Authorization: Bearer YOUR_API_KEY" \
     -H "Content-Type: application/json" \
     -d '{
@@ -50,7 +50,7 @@ Follow these steps to begin using the Nowadays API for your event venue sourcing
 <Accordion icon="building" title="Get venue options">
   Once your event is created, you can retrieve venue options:
   ```bash
-  curl https://api.getnowadays.com/events/{eventId}/venues \
+  curl https://getnowadays.com/api/northstar/events/{eventId}/venues \
     -H "Authorization: Bearer YOUR_API_KEY"
   ```
 </Accordion>

@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://api.getnowadays.com"
+      "url": "https://getnowadays.com/api/northstar"
     }
   ],
   "security": [
@@ -320,7 +320,7 @@
             "type": "string"
           },
           "event_id": {
-            "type": "string"
+            "type": "number"
           }
         }
       },
