@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://meetings-conventions-nowadays.com/api/northstar"
+      "url": "https://getnowadays.com/api/northstar"
     }
   ],
   "security": [
