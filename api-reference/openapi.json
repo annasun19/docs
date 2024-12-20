@@ -308,19 +308,23 @@
       },
       "ProposalRequest": {
         "type": "object",
-        "required": ["event_id"],
+        "required": ["event_id", "venue_name", "venue_city"],
         "properties": {
-          "venue_id": {
-            "type": "string"
+          "event_id": {
+            "type": "number",
+            "description": "The ID of your event"
+          },
+          "ntm_id": {
+            "type": "string",
+            "description": "The Northstar Hotel ID"
           },
           "venue_name": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of the venue"
           },
-          "city": {
-            "type": "string"
-          },
-          "event_id": {
-            "type": "number"
+          "venue_city": {
+            "type": "string",
+            "description": "City where the venue is located"
           }
         }
       },
