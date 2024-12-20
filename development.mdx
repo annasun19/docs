@@ -9,7 +9,7 @@ description: 'Learn how to integrate with the Nowadays API'
 
 ## Making API Requests
 
-All API requests should be made to `https://getnowadays.com/api/northstar`. The API accepts JSON-encoded request bodies and returns JSON-encoded responses.
+All API requests should be made to `https://meetings-conventions-nowadays.com/api/northstar`. The API accepts JSON-encoded request bodies and returns JSON-encoded responses.
 
 ### Authentication
 
@@ -24,7 +24,7 @@ Authorization: Bearer YOUR_API_KEY
 Here's a complete example of creating an event using curl:
 
 ```bash
-curl -X POST https://getnowadays.com/api/northstar/events \
+curl -X POST https://meetings-conventions-nowadays.com/api/northstar/events \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -72,7 +72,7 @@ Example error response:
   <Accordion title="Pagination">
     When retrieving lists of venues or quotes, use the limit parameter to control the response size:
     ```bash
-    curl https://getnowadays.com/api/northstar/events/{eventId}/venues?limit=10
+    curl https://meetings-conventions-nowadays.com/api/northstar/events/{eventId}/venues?limit=10
     ```
   </Accordion>
 </AccordionGroup>
