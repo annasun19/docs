@@ -1,0 +1,41 @@
+---
+title: 'Draft Event'
+openapi: 'POST /draft-event'
+description: 'Create a draft event with multiple venue proposals.'
+---
+
+Create a draft event with multiple venue proposals. You can specify multiple venues by providing their details.
+
+## Endpoint
+
+`POST /draft-event`
+
+## Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token for authentication. Replace `BEARER_KEY` with your actual token.
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Must be `application/json`.
+</ParamField>
+
+## Request Body
+
+<ParamField body="venues" type="array" required>
+  An array of venue objects, each containing the following fields:
+</ParamField>
+
+- <ParamField body="ntm_id" type="string" optional>
+  The Northstar Hotel ID.
+  </ParamField>
+
+- <ParamField body="venue_name" type="string" required>
+  Name of the venue.
+  </ParamField>
+
+- <ParamField body="venue_city" type="string" required>
+  City where the venue is located.
+  </ParamField>
+
+## Example Request

@@ -145,6 +145,64 @@
         }
       }
     },
+    "/draft-event": {
+      "post": {
+        "summary": "Draft Event",
+        "description": "Create a draft event with multiple venue proposals.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "venues": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "ntm_id": {
+                          "type": "string",
+                          "description": "The Northstar Hotel ID"
+                        },
+                        "venue_name": {
+                          "type": "string",
+                          "description": "Name of the venue"
+                        },
+                        "venue_city": {
+                          "type": "string",
+                          "description": "City where the venue is located"
+                        }
+                      },
+                      "required": ["venue_name", "venue_city"]
+                    }
+                  }
+                },
+                "required": ["venues"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Draft event created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "draft_id": {
+                      "type": "string",
+                      "description": "Unique identifier for the created draft event"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/events/{eventId}": {
       "put": {
         "summary": "Update Event",
