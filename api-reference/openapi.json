@@ -172,6 +172,10 @@
                         "venue_city": {
                           "type": "string",
                           "description": "City where the venue is located"
+                        },
+                        "venue_cover_photo_url": {
+                          "type": "string",
+                          "description": "URL of the cover photo for the venue. If not provided, a filler image will be shown on the draft-event page."
                         }
                       },
                       "required": ["venue_name", "venue_city"]
