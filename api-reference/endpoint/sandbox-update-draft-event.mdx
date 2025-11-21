@@ -1,0 +1,72 @@
+---
+title: 'Update Draft Event'
+openapi: 'PUT /api/sandbox/draft-events/{draft_event_id}'
+description: 'Update an existing draft event'
+---
+
+Update the details of a draft event in the sandbox environment. You can modify any field before converting the draft to a real event.
+
+### Path Parameters
+
+<ParamField path="draft_event_id" type="number" required>
+  The unique identifier of the draft event to update
+</ParamField>
+
+### Request Body
+
+Include only the fields you want to update. All fields from the create endpoint are supported.
+
+<ParamField body="name" type="string">
+  Updated event name
+</ParamField>
+
+<ParamField body="num_people" type="number">
+  Updated attendee count
+</ParamField>
+
+<ParamField body="formatted_locations" type="array">
+  Updated location information
+</ParamField>
+
+<ParamField body="event_dates" type="array">
+  Updated event dates
+</ParamField>
+
+<ParamField body="agenda" type="array">
+  Updated agenda items
+</ParamField>
+
+<ParamField body="budget_breakdown" type="object">
+  Updated budget allocation
+</ParamField>
+
+### Response Format
+
+Returns the updated draft event object with all current values.
+
+```json
+{
+  "draft_event_id": 456,
+  "uuid": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "Updated Conference Name",
+  "num_people": 450,
+  "updated_at": "2025-11-21T11:30:00Z"
+}
+```
+
+### Example Request
+
+```json
+{
+  "num_people": 450,
+  "budget_breakdown": {
+    "flight": 55000,
+    "venue": 110000,
+    "fb": 35000,
+    "transport": 12000,
+    "activities": 18000,
+    "av": 22000,
+    "other": 8000
+  }
+}
+```

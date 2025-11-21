@@ -1,0 +1,29 @@
+---
+title: 'Delete Webhook'
+openapi: 'DELETE /api/sandbox/webhooks/{webhook_id}'
+description: 'Unregister a webhook'
+---
+
+Delete a registered webhook from your sandbox environment. This will stop all event notifications to that endpoint.
+
+### Path Parameters
+
+<ParamField path="webhook_id" type="number" required>
+  The unique identifier of the webhook to delete
+</ParamField>
+
+### Response Format
+
+```json
+{
+  "success": true,
+  "message": "Webhook deleted successfully",
+  "webhook_id": 7001
+}
+```
+
+### Notes
+
+- Deleted webhooks cannot be recovered
+- Any pending event deliveries to this webhook will be cancelled
+- This action is immediate and cannot be undone

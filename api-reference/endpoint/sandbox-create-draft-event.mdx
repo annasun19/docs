@@ -1,0 +1,133 @@
+---
+title: 'Create Draft Event'
+openapi: 'POST /api/sandbox/draft-events'
+description: 'Create a test draft event for RFP testing'
+---
+
+Create a draft event in the sandbox environment. Draft events are used to collect event details before sending RFPs to venues.
+
+### Request Body
+
+<ParamField body="org_id" type="number" required>
+  Your organization ID
+</ParamField>
+
+<ParamField body="name" type="string" required>
+  Name of the event (e.g., "Annual Conference 2027")
+</ParamField>
+
+<ParamField body="formatted_locations" type="array" required>
+  Array of location objects containing city, state, country, and coordinates
+</ParamField>
+
+<ParamField body="num_people" type="number" required>
+  Number of attendees expected
+</ParamField>
+
+<ParamField body="event_dates" type="array" required>
+  Array of date objects with date/startDate/endDate and times
+</ParamField>
+
+<ParamField body="is_multi_day" type="boolean" required>
+  Whether the event spans multiple days
+</ParamField>
+
+<ParamField body="venue_type" type="string">
+  Type of venue (e.g., "hotel", "conference center", "boutique hotel")
+</ParamField>
+
+<ParamField body="accommodations" type="object">
+  Room block requirements by date with room types (Single, Double, Suite, etc.)
+</ParamField>
+
+<ParamField body="agenda" type="array">
+  Array of agenda items with room requirements, AV needs, and F&B requirements
+</ParamField>
+
+<ParamField body="budget_breakdown" type="object">
+  Budget allocation for flight, venue, F&B, transport, activities, AV, and other
+</ParamField>
+
+<ParamField body="decision_deadline" type="string">
+  ISO 8601 date for when decision needs to be made
+</ParamField>
+
+<ParamField body="custom_questions" type="array">
+  Array of custom questions to ask venues
+</ParamField>
+
+<ParamField body="custom_concessions" type="array">
+  Array of custom concessions or clauses to request
+</ParamField>
+
+<ParamField body="user_email" type="string" required>
+  Email of the user creating the event
+</ParamField>
+
+<ParamField body="user_first_name" type="string">
+  First name of the user
+</ParamField>
+
+<ParamField body="user_last_name" type="string">
+  Last name of the user
+</ParamField>
+
+### Response Format
+
+```json
+{
+  "draft_event_id": 456,
+  "uuid": "550e8400-e29b-41d4-a716-446655440000",
+  "org_id": 123,
+  "name": "Annual Conference 2027",
+  "num_people": 400,
+  "formatted_locations": [
+    {
+      "city": "Austin",
+      "state": "Texas",
+      "country": "United States",
+      "formatted_address": "Austin, TX, USA",
+      "place_id": "ChIJLwPMoJm1RIYRetVp1EtGm10",
+      "coordinates": {
+        "lat": 30.267153,
+        "lng": -97.743057
+      }
+    }
+  ],
+  "created_at": "2025-11-21T10:00:00Z",
+  "is_multi_day": true,
+  "is_northstar_event": false
+}
+```
+
+### Example Request
+
+```json
+{
+  "org_id": 123,
+  "name": "Annual Conference 2027",
+  "formatted_locations": [
+    {
+      "city": "Austin",
+      "state": "Texas",
+      "country": "United States",
+      "formatted_address": "Austin, TX, USA",
+      "place_id": "ChIJLwPMoJm1RIYRetVp1EtGm10",
+      "coordinates": {
+        "lat": 30.267153,
+        "lng": -97.743057
+      }
+    }
+  ],
+  "num_people": 400,
+  "event_dates": [
+    {
+      "startDate": "2027-03-15",
+      "endDate": "2027-03-17"
+    }
+  ],
+  "is_multi_day": true,
+  "venue_type": "hotel",
+  "user_email": "planner@company.com"
+}
+```

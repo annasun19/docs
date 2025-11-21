@@ -1,0 +1,90 @@
+---
+title: 'Create Test Bid'
+openapi: 'POST /api/sandbox/bids'
+description: 'Create a test venue bid/quote for an event'
+---
+
+Create a test bid from a venue in the sandbox environment. This simulates a venue responding to an RFP with their proposal.
+
+### Request Body
+
+<ParamField body="event_id" type="number" required>
+  The event ID this bid is for
+</ParamField>
+
+<ParamField body="venue_name" type="string" required>
+  Name of the venue submitting the bid
+</ParamField>
+
+<ParamField body="venue_city" type="string" required>
+  City where the venue is located
+</ParamField>
+
+<ParamField body="total_cost" type="number" required>
+  Total quoted cost for the event
+</ParamField>
+
+<ParamField body="meeting_space_cost" type="number">
+  Cost for meeting space rental
+</ParamField>
+
+<ParamField body="accommodation_cost" type="number">
+  Cost for sleeping rooms
+</ParamField>
+
+<ParamField body="fb_cost" type="number">
+  Cost for food and beverage
+</ParamField>
+
+<ParamField body="av_cost" type="number">
+  Cost for AV equipment and services
+</ParamField>
+
+<ParamField body="proposal_notes" type="string">
+  Additional notes from the venue
+</ParamField>
+
+<ParamField body="bid_status" type="string">
+  Status of the bid (pending, accepted, rejected)
+</ParamField>
+
+<ParamField body="valid_until" type="string">
+  ISO 8601 date when the quote expires
+</ParamField>
+
+### Response Format
+
+```json
+{
+  "bid_id": 1001,
+  "event_id": 789,
+  "venue_name": "Austin Convention Center Hotel",
+  "venue_city": "Austin",
+  "total_cost": 125000,
+  "meeting_space_cost": 15000,
+  "accommodation_cost": 80000,
+  "fb_cost": 25000,
+  "av_cost": 5000,
+  "proposal_notes": "We can accommodate all your requirements with our newly renovated meeting spaces.",
+  "bid_status": "pending",
+  "valid_until": "2027-02-15T23:59:59Z",
+  "created_at": "2025-11-21T13:00:00Z"
+}
+```
+
+### Example Request
+
+```json
+{
+  "event_id": 789,
+  "venue_name": "Austin Convention Center Hotel",
+  "venue_city": "Austin",
+  "total_cost": 125000,
+  "meeting_space_cost": 15000,
+  "accommodation_cost": 80000,
+  "fb_cost": 25000,
+  "av_cost": 5000,
+  "bid_status": "pending",
+  "valid_until": "2027-02-15T23:59:59Z"
+}
+```

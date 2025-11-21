@@ -1,0 +1,62 @@
+---
+title: 'Get Event Bids'
+openapi: 'GET /api/events/{event_id}/bids'
+description: 'Retrieve all bids/quotes for a specific event'
+---
+
+Get all venue bids and quotes that have been submitted for a specific event.
+
+### Path Parameters
+
+<ParamField path="event_id" type="number" required>
+  The unique identifier of the event
+</ParamField>
+
+### Query Parameters
+
+<ParamField query="status" type="string">
+  Filter by bid status (pending, accepted, rejected)
+</ParamField>
+
+### Response Format
+
+```json
+{
+  "event_id": 789,
+  "total_bids": 5,
+  "bids": [
+    {
+      "bid_id": 1001,
+      "venue_name": "Austin Convention Center Hotel",
+      "venue_city": "Austin",
+      "total_cost": 125000,
+      "meeting_space_cost": 15000,
+      "accommodation_cost": 80000,
+      "fb_cost": 25000,
+      "av_cost": 5000,
+      "bid_status": "pending",
+      "valid_until": "2027-02-15T23:59:59Z",
+      "created_at": "2025-11-21T13:00:00Z"
+    },
+    {
+      "bid_id": 1002,
+      "venue_name": "Hilton Austin",
+      "venue_city": "Austin",
+      "total_cost": 135000,
+      "meeting_space_cost": 18000,
+      "accommodation_cost": 85000,
+      "fb_cost": 27000,
+      "av_cost": 5000,
+      "bid_status": "accepted",
+      "valid_until": "2027-02-15T23:59:59Z",
+      "created_at": "2025-11-21T14:30:00Z"
+    }
+  ]
+}
+```
+
+### Notes
+
+- Bids are ordered by `created_at` descending (newest first)
+- Each bid includes full cost breakdown for comparison
+- Use the `status` query parameter to filter by acceptance status

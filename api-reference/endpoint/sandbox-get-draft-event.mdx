@@ -1,0 +1,80 @@
+---
+title: 'Get Draft Event'
+openapi: 'GET /api/sandbox/draft-events/{draft_event_id}'
+description: 'Retrieve details of a draft event'
+---
+
+Get the full details of a specific draft event in the sandbox environment.
+
+### Path Parameters
+
+<ParamField path="draft_event_id" type="number" required>
+  The unique identifier of the draft event
+</ParamField>
+
+### Response Format
+
+```json
+{
+  "draft_event_id": 456,
+  "uuid": "550e8400-e29b-41d4-a716-446655440000",
+  "org_id": 123,
+  "name": "Annual Conference 2027",
+  "venue_type": "hotel",
+  "num_people": 400,
+  "formatted_locations": [
+    {
+      "city": "Austin",
+      "state": "Texas",
+      "country": "United States",
+      "formatted_address": "Austin, TX, USA",
+      "place_id": "ChIJLwPMoJm1RIYRetVp1EtGm10",
+      "coordinates": {
+        "lat": 30.267153,
+        "lng": -97.743057
+      }
+    }
+  ],
+  "event_dates": [
+    {
+      "startDate": "2027-03-15",
+      "endDate": "2027-03-17"
+    }
+  ],
+  "is_multi_day": true,
+  "accommodations": {
+    "2027-03-15": {
+      "Single": 150,
+      "Double": 100,
+      "Suite": 10
+    }
+  },
+  "agenda": [
+    {
+      "id": "agenda-1",
+      "title": "General Session",
+      "dates": ["2027-03-15"],
+      "startTime": "09:00",
+      "endTime": "17:00",
+      "roomType": "Theater",
+      "capacity": 400,
+      "avRequirements": ["Projector", "Microphone"],
+      "fbRequirements": ["Coffee Service", "Lunch"]
+    }
+  ],
+  "budget_breakdown": {
+    "flight": 50000,
+    "venue": 100000,
+    "fb": 30000,
+    "transport": 10000,
+    "activities": 15000,
+    "av": 20000,
+    "other": 5000
+  },
+  "decision_deadline": "2027-02-01T23:59:59Z",
+  "user_email": "planner@company.com",
+  "user_first_name": "Jane",
+  "user_last_name": "Smith",
+  "created_at": "2025-11-21T10:00:00Z"
+}
+```

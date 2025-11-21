@@ -1,0 +1,108 @@
+---
+title: 'Register Webhook'
+openapi: 'POST /api/sandbox/webhooks'
+description: 'Register a webhook to receive event notifications'
+---
+
+Register a webhook endpoint to receive real-time notifications when events occur in your sandbox environment (e.g., RFP sent, bid received, booking confirmed).
+
+### Request Body
+
+<ParamField body="org_id" type="number" required>
+  Your organization ID
+</ParamField>
+
+<ParamField body="url" type="string" required>
+  The HTTPS URL where webhook events should be sent
+</ParamField>
+
+<ParamField body="events" type="array" required>
+  Array of event types to subscribe to
+</ParamField>
+
+<ParamField body="description" type="string">
+  Optional description for this webhook
+</ParamField>
+
+<ParamField body="secret" type="string">
+  Optional secret for webhook signature verification
+</ParamField>
+
+### Event Types
+
+Subscribe to one or more of these event types:
+
+- `draft_event.created` - New draft event created
+- `event.created` - Draft converted to event
+- `event.updated` - Event details modified
+- `rfp.sent` - RFP sent to venue
+- `bid.received` - Venue submitted a bid
+- `bid.accepted` - Bid accepted by planner
+- `bid.rejected` - Bid rejected by planner
+- `booking.created` - New booking created
+- `booking.updated` - Booking modified
+- `booking.cancelled` - Booking cancelled
+- `payment.received` - Payment milestone completed
+
+### Response Format
+
+```json
+{
+  "webhook_id": 7001,
+  "org_id": 123,
+  "url": "https://your-app.com/webhooks/nowadays",
+  "events": [
+    "bid.received",
+    "booking.created",
+    "payment.received"
+  ],
+  "description": "Production integration webhook",
+  "status": "active",
+  "secret": "whsec_abc123...",
+  "created_at": "2025-11-21T18:00:00Z"
+}
+```
+
+### Example Request
+
+```json
+{
+  "org_id": 123,
+  "url": "https://your-app.com/webhooks/nowadays",
+  "events": [
+    "bid.received",
+    "booking.created",
+    "payment.received"
+  ],
+  "description": "Production integration webhook",
+  "secret": "your_webhook_secret_key"
+}
+```
+
+### Webhook Payload Format
+
+When an event occurs, a POST request will be sent to your URL:
+
+```json
+{
+  "webhook_id": 7001,
+  "event_type": "bid.received",
+  "event_id": 789,
+  "data": {
+    "bid_id": 1001,
+    "venue_name": "Austin Convention Center Hotel",
+    "total_cost": 125000,
+    "created_at": "2025-11-21T19:00:00Z"
+  },
+  "timestamp": "2025-11-21T19:00:01Z",
+  "signature": "sha256=..."
+}
+```
+
+### Notes
+
+- Webhook URLs must use HTTPS
+- Failed deliveries are retried up to 3 times with exponential backoff
+- Use the `secret` to verify webhook authenticity via HMAC signature
+- Webhooks timeout after 10 seconds
+- Return a 2xx status code to acknowledge receipt

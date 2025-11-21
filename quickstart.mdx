@@ -12,7 +12,7 @@ Follow these steps to begin using the Nowadays API for your event venue sourcing
 <AccordionGroup>
   <Accordion icon="key" title="Get your API key">
     To access the Nowadays API, you'll need an API key. Contact our team at
-    founders@getnowadays.com to get your API credentials. Keep your API key
+    founders@nowadays.ai to get your API credentials. Keep your API key
     secure and never share it publicly.
   </Accordion>
   <Accordion icon="lock" title="Using your API key">
@@ -30,7 +30,7 @@ Follow these steps to begin using the Nowadays API for your event venue sourcing
   Start by creating an event to begin the venue sourcing process:
 
   ```bash
-  curl -X POST https://getnowadays.com/api/northstar/events \
+  curl -X POST https://nowadays.ai/api/northstar/events \
     -H "Authorization: Bearer YOUR_API_KEY" \
     -H "Content-Type: application/json" \
     -d '{
@@ -50,7 +50,7 @@ Follow these steps to begin using the Nowadays API for your event venue sourcing
 <Accordion icon="building" title="Get venue options">
   Once your event is created, you can retrieve venue options:
   ```bash
-  curl https://getnowadays.com/api/northstar/events/{eventId}/venues \
+  curl https://nowadays.ai/api/northstar/events/{eventId}/venues \
     -H "Authorization: Bearer YOUR_API_KEY"
   ```
 </Accordion>

@@ -1,0 +1,65 @@
+---
+title: 'Update Bid Status'
+openapi: 'PUT /api/sandbox/bids/{bid_id}'
+description: 'Update the status of a venue bid'
+---
+
+Update a bid's status to accept, reject, or modify the proposal in the sandbox environment.
+
+### Path Parameters
+
+<ParamField path="bid_id" type="number" required>
+  The unique identifier of the bid to update
+</ParamField>
+
+### Request Body
+
+<ParamField body="bid_status" type="string" required>
+  New status for the bid (pending, accepted, rejected)
+</ParamField>
+
+<ParamField body="rejection_reason" type="string">
+  Reason for rejection (required if status is "rejected")
+</ParamField>
+
+<ParamField body="notes" type="string">
+  Additional notes about the status change
+</ParamField>
+
+### Response Format
+
+```json
+{
+  "bid_id": 1001,
+  "event_id": 789,
+  "venue_name": "Austin Convention Center Hotel",
+  "bid_status": "accepted",
+  "updated_at": "2025-11-21T15:00:00Z",
+  "notes": "Accepted pending final contract review"
+}
+```
+
+### Example Request - Accept Bid
+
+```json
+{
+  "bid_status": "accepted",
+  "notes": "Moving forward with this venue"
+}
+```
+
+### Example Request - Reject Bid
+
+```json
+{
+  "bid_status": "rejected",
+  "rejection_reason": "Budget constraints",
+  "notes": "Quote exceeded our budget allocation"
+}
+```
+
+### Notes
+
+- Accepting a bid typically changes the event status to "booked"
+- Only one bid per event can be in "accepted" status
+- Rejecting other bids automatically sends notification to venues

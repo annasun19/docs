@@ -1,0 +1,71 @@
+---
+title: 'List Webhooks'
+openapi: 'GET /api/sandbox/webhooks'
+description: 'Get all registered webhooks for your organization'
+---
+
+Retrieve a list of all webhooks registered for your organization in the sandbox environment.
+
+### Query Parameters
+
+<ParamField query="org_id" type="number" required>
+  Your organization ID
+</ParamField>
+
+### Response Format
+
+```json
+{
+  "total": 2,
+  "webhooks": [
+    {
+      "webhook_id": 7001,
+      "url": "https://your-app.com/webhooks/nowadays",
+      "events": [
+        "bid.received",
+        "booking.created",
+        "payment.received"
+      ],
+      "description": "Production integration webhook",
+      "status": "active",
+      "created_at": "2025-11-21T18:00:00Z",
+      "last_triggered": "2025-11-21T19:00:01Z",
+      "delivery_stats": {
+        "total_deliveries": 47,
+        "successful": 45,
+        "failed": 2
+      }
+    },
+    {
+      "webhook_id": 7002,
+      "url": "https://staging.your-app.com/webhooks/nowadays",
+      "events": [
+        "event.created",
+        "event.updated"
+      ],
+      "description": "Staging environment webhook",
+      "status": "active",
+      "created_at": "2025-11-20T10:00:00Z",
+      "last_triggered": "2025-11-21T15:30:00Z",
+      "delivery_stats": {
+        "total_deliveries": 12,
+        "successful": 12,
+        "failed": 0
+      }
+    }
+  ]
+}
+```
+
+### Webhook Status Values
+
+- `active` - Webhook is receiving events
+- `paused` - Temporarily disabled
+- `failed` - Too many delivery failures (auto-disabled after 10 consecutive failures)
+
+### Notes
+
+- Webhooks are ordered by `created_at` descending
+- `delivery_stats` shows reliability metrics
+- Failed webhooks are automatically disabled after 10 consecutive failures
+- You can have up to 10 active webhooks per organization

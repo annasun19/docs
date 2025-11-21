@@ -1,0 +1,43 @@
+---
+title: 'Get Sandbox API Key'
+openapi: 'POST /api/auth/sandbox'
+description: 'Obtain an API key for testing in the sandbox environment'
+---
+
+Generate a sandbox API key for testing and development purposes. Sandbox API keys allow you to create test RFPs, bids, and bookings without affecting production data.
+
+### Request Body
+
+<ParamField body="org_id" type="number" required>
+  Your organization ID
+</ParamField>
+
+<ParamField body="email" type="string" required>
+  Your email address
+</ParamField>
+
+### Response Format
+
+```json
+{
+  "api_key": "sandbox_sk_test_1234567890abcdef",
+  "environment": "sandbox",
+  "org_id": 123,
+  "expires_at": "2025-12-31T23:59:59Z"
+}
+```
+
+### Usage
+
+Include the API key in the `Authorization` header for all subsequent requests:
+
+```
+Authorization: Bearer sandbox_sk_test_1234567890abcdef
+```
+
+### Notes
+
+- Sandbox API keys are prefixed with `sandbox_sk_test_`
+- Keys expire after 90 days
+- All data created with sandbox keys is isolated and can be reset at any time
+- Sandbox keys cannot access production data

@@ -1,0 +1,61 @@
+---
+title: 'Get Booking Details'
+openapi: 'GET /api/bookings/{booking_id}'
+description: 'Retrieve details of a specific booking'
+---
+
+Get comprehensive details for a specific venue booking including payment status and contract information.
+
+### Path Parameters
+
+<ParamField path="booking_id" type="number" required>
+  The unique identifier of the booking
+</ParamField>
+
+### Response Format
+
+```json
+{
+  "booking_id": 5001,
+  "event_id": 789,
+  "event_name": "Annual Conference 2027",
+  "venue_name": "Austin Convention Center Hotel",
+  "venue_city": "Austin",
+  "booking_status": "confirmed",
+  "deposit_amount": 25000,
+  "total_amount": 125000,
+  "amount_paid": 25000,
+  "amount_remaining": 100000,
+  "payment_schedule": [
+    {
+      "milestone": "Deposit",
+      "amount": 25000,
+      "due_date": "2026-12-01",
+      "status": "paid",
+      "paid_date": "2025-11-21"
+    },
+    {
+      "milestone": "Second Payment",
+      "amount": 50000,
+      "due_date": "2027-02-01",
+      "status": "pending"
+    },
+    {
+      "milestone": "Final Payment",
+      "amount": 50000,
+      "due_date": "2027-03-01",
+      "status": "pending"
+    }
+  ],
+  "contract_signed_date": "2025-11-21T16:00:00Z",
+  "cancellation_deadline": "2027-02-01T23:59:59Z",
+  "event_dates": [
+    {
+      "startDate": "2027-03-15",
+      "endDate": "2027-03-17"
+    }
+  ],
+  "created_at": "2025-11-21T16:00:00Z",
+  "updated_at": "2025-11-21T16:00:00Z"
+}
+```

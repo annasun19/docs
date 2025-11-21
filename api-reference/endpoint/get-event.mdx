@@ -1,0 +1,90 @@
+---
+title: 'Get Event Details'
+openapi: 'GET /api/events/{event_id}'
+description: 'Retrieve full details of a specific event'
+---
+
+Get comprehensive details for a specific event by its ID. This endpoint returns all event information including status, dates, venue requirements, and financial details.
+
+### Path Parameters
+
+<ParamField path="event_id" type="number" required>
+  The unique identifier of the event
+</ParamField>
+
+### Response Format
+
+```json
+{
+  "event_id": 789,
+  "org_id": 123,
+  "name": "Annual Conference 2027",
+  "event_status": "quoted",
+  "event_status_last_update": "2025-11-21T12:00:00Z",
+  "created_at": "2025-11-21T10:00:00Z",
+  "user_email": "planner@company.com",
+  "venue_type": "hotel",
+  "num_people": 400,
+  "formatted_locations": [
+    {
+      "city": "Austin",
+      "state": "Texas",
+      "country": "United States",
+      "formatted_address": "Austin, TX, USA",
+      "place_id": "ChIJLwPMoJm1RIYRetVp1EtGm10",
+      "coordinates": {
+        "lat": 30.267153,
+        "lng": -97.743057
+      }
+    }
+  ],
+  "event_dates": [
+    {
+      "startDate": "2027-03-15",
+      "endDate": "2027-03-17"
+    }
+  ],
+  "is_multi_day": true,
+  "accommodations": {
+    "2027-03-15": {
+      "Single": 150,
+      "Double": 100,
+      "Suite": 10
+    }
+  },
+  "agenda": [
+    {
+      "id": "agenda-1",
+      "title": "General Session",
+      "dates": ["2027-03-15"],
+      "startTime": "09:00",
+      "endTime": "17:00",
+      "roomType": "Theater",
+      "capacity": 400,
+      "avRequirements": ["Projector", "Microphone"],
+      "fbRequirements": ["Coffee Service", "Lunch"]
+    }
+  ],
+  "budget_breakdown": {
+    "flight": 50000,
+    "venue": 100000,
+    "fb": 30000,
+    "transport": 10000,
+    "activities": 15000,
+    "av": 20000,
+    "other": 5000
+  },
+  "decision_deadline": "2027-02-01T23:59:59Z",
+  "currency": "USD",
+  "expected_commission": 15000,
+  "is_northstar_event": false
+}
+```
+
+### Event Status Values
+
+- `in-progress` - Event created, RFPs being sent or awaited
+- `quoted` - Received quotes from venues
+- `booked` - Venue has been booked
+- `completed` - Event has taken place
+- `cancelled` - Event was cancelled

@@ -18,12 +18,12 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:founders@getnowadays.com"
+      "url": "mailto:founders@nowadays.ai"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://getnowadays.com"
+    "url": "https://nowadays.ai"
   },
   "tabs": [
     {
@@ -35,22 +35,22 @@
     {
       "name": "Documentation",
       "icon": "book-open-cover",
-      "url": "https://docs.getnowadays.com"
+      "url": "https://docs.nowadays.ai"
     },
     {
       "name": "Email Us",
       "icon": "info",
-      "url": "mailto:founders@getnowadays.com"
+      "url": "mailto:founders@nowadays.ai"
     },
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://getnowadays.com/blog"
+      "url": "https://nowadays.ai/blog"
     },
     {
       "name": "Case Studies",
       "icon": "users",
-      "url": "https://getnowadays.com/case-studies"
+      "url": "https://nowadays.ai/case-studies"
     },
     {
       "name": "LinkedIn",
@@ -74,7 +74,9 @@
         "api-reference/endpoint/update-event",
         "api-reference/endpoint/delete-event",
         "api-reference/endpoint/list-venues",
-        "api-reference/endpoint/get-quotes"
+        "api-reference/endpoint/get-quotes",
+        "api-reference/endpoint/get-event",
+        "api-reference/endpoint/get-org-events"
       ]
     },
     {
@@ -94,6 +96,28 @@
     {
       "group": "Batch Operations",
       "pages": ["api-reference/endpoint/batch-create-events"]
+    },
+    {
+      "group": "Sandbox APIs",
+      "pages": [
+        "api-reference/endpoint/sandbox-auth",
+        "api-reference/endpoint/sandbox-create-draft-event",
+        "api-reference/endpoint/sandbox-get-draft-event",
+        "api-reference/endpoint/sandbox-update-draft-event",
+        "api-reference/endpoint/sandbox-delete-draft-event",
+        "api-reference/endpoint/sandbox-convert-draft-event",
+        "api-reference/endpoint/get-event-bids",
+        "api-reference/endpoint/sandbox-create-bid",
+        "api-reference/endpoint/sandbox-update-bid",
+        "api-reference/endpoint/get-booking",
+        "api-reference/endpoint/sandbox-create-booking",
+        "api-reference/endpoint/sandbox-update-booking",
+        "api-reference/endpoint/sandbox-reset",
+        "api-reference/endpoint/sandbox-status",
+        "api-reference/endpoint/sandbox-register-webhook",
+        "api-reference/endpoint/sandbox-list-webhooks",
+        "api-reference/endpoint/sandbox-delete-webhook"
+      ]
     }
   ],
   "footerSocials": {

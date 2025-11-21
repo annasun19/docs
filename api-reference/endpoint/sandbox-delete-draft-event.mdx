@@ -1,0 +1,29 @@
+---
+title: 'Delete Draft Event'
+openapi: 'DELETE /api/sandbox/draft-events/{draft_event_id}'
+description: 'Delete a draft event from sandbox'
+---
+
+Permanently delete a draft event from the sandbox environment. This action cannot be undone.
+
+### Path Parameters
+
+<ParamField path="draft_event_id" type="number" required>
+  The unique identifier of the draft event to delete
+</ParamField>
+
+### Response Format
+
+```json
+{
+  "success": true,
+  "message": "Draft event deleted successfully",
+  "draft_event_id": 456
+}
+```
+
+### Notes
+
+- Deleted draft events cannot be recovered
+- Any associated RFPs or quotes will also be removed
+- This endpoint is only available in sandbox mode

@@ -1,0 +1,93 @@
+---
+title: 'Update Booking'
+openapi: 'PUT /api/sandbox/bookings/{booking_id}'
+description: 'Modify or cancel a booking in sandbox'
+---
+
+Update a booking's details, payment status, or cancel it in the sandbox environment.
+
+### Path Parameters
+
+<ParamField path="booking_id" type="number" required>
+  The unique identifier of the booking to update
+</ParamField>
+
+### Request Body
+
+<ParamField body="booking_status" type="string">
+  Updated booking status (confirmed, pending, cancelled, completed)
+</ParamField>
+
+<ParamField body="payment_schedule" type="array">
+  Updated payment schedule with milestone statuses
+</ParamField>
+
+<ParamField body="cancellation_reason" type="string">
+  Reason for cancellation (required if status is "cancelled")
+</ParamField>
+
+<ParamField body="modification_notes" type="string">
+  Notes about the modification
+</ParamField>
+
+### Response Format
+
+```json
+{
+  "booking_id": 5001,
+  "event_id": 789,
+  "booking_status": "confirmed",
+  "amount_paid": 75000,
+  "amount_remaining": 50000,
+  "payment_schedule": [
+    {
+      "milestone": "Deposit",
+      "amount": 25000,
+      "status": "paid"
+    },
+    {
+      "milestone": "Second Payment",
+      "amount": 50000,
+      "status": "paid",
+      "paid_date": "2027-01-15"
+    },
+    {
+      "milestone": "Final Payment",
+      "amount": 50000,
+      "status": "pending"
+    }
+  ],
+  "updated_at": "2025-11-22T10:00:00Z"
+}
+```
+
+### Example Request - Update Payment
+
+```json
+{
+  "payment_schedule": [
+    {
+      "milestone": "Second Payment",
+      "status": "paid",
+      "paid_date": "2027-01-15"
+    }
+  ],
+  "modification_notes": "Second payment received"
+}
+```
+
+### Example Request - Cancel Booking
+
+```json
+{
+  "booking_status": "cancelled",
+  "cancellation_reason": "Event postponed indefinitely",
+  "modification_notes": "Client requested cancellation, deposit refunded"
+}
+```
+
+### Notes
+
+- Cancellations before the deadline may allow deposit refunds
+- Payment schedule updates automatically recalculate `amount_remaining`
+- Cancelled bookings cannot be reactivated (create new booking instead)

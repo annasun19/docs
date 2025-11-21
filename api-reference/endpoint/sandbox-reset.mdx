@@ -1,0 +1,56 @@
+---
+title: 'Reset Sandbox Data'
+openapi: 'POST /api/sandbox/reset'
+description: 'Reset all sandbox test data for your organization'
+---
+
+Reset all test data in the sandbox environment for your organization. This deletes all draft events, events, bids, bookings, and webhooks created with your sandbox API key.
+
+### Request Body
+
+<ParamField body="org_id" type="number" required>
+  Your organization ID to reset sandbox data for
+</ParamField>
+
+<ParamField body="confirm" type="boolean" required>
+  Must be set to `true` to confirm the reset action
+</ParamField>
+
+### Response Format
+
+```json
+{
+  "success": true,
+  "message": "Sandbox data reset successfully",
+  "org_id": 123,
+  "deleted": {
+    "draft_events": 5,
+    "events": 3,
+    "bids": 12,
+    "bookings": 2,
+    "webhooks": 4
+  },
+  "reset_at": "2025-11-21T17:00:00Z"
+}
+```
+
+### Example Request
+
+```json
+{
+  "org_id": 123,
+  "confirm": true
+}
+```
+
+### Notes
+
+- This action is **irreversible** - all sandbox data will be permanently deleted
+- Only affects data created with sandbox API keys
+- Production data is never affected
+- Useful for resetting your testing environment to a clean state
+- All active webhooks will be unregistered
+
+### Warning
+
+Make sure you really want to delete all test data before calling this endpoint. There is no undo functionality.

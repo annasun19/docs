@@ -1,0 +1,50 @@
+---
+title: 'Get Sandbox Status'
+openapi: 'GET /api/sandbox/status'
+description: 'Check sandbox environment status and data summary'
+---
+
+Get the current status of your sandbox environment including data counts and system health.
+
+### Query Parameters
+
+<ParamField query="org_id" type="number" required>
+  Your organization ID
+</ParamField>
+
+### Response Format
+
+```json
+{
+  "environment": "sandbox",
+  "status": "operational",
+  "org_id": 123,
+  "data_summary": {
+    "draft_events": 5,
+    "events": 3,
+    "bids": 12,
+    "bookings": 2,
+    "webhooks": 4
+  },
+  "api_limits": {
+    "requests_per_minute": 100,
+    "requests_today": 247,
+    "daily_limit": 10000
+  },
+  "last_reset": "2025-11-15T10:00:00Z",
+  "sandbox_created": "2025-11-01T08:00:00Z"
+}
+```
+
+### Status Values
+
+- `operational` - Sandbox is functioning normally
+- `degraded` - Some features may be slow or unavailable
+- `maintenance` - Sandbox is undergoing maintenance
+
+### Notes
+
+- Use this endpoint to monitor your sandbox usage
+- Check `api_limits` to ensure you're within rate limits
+- `data_summary` shows counts of all test objects in your sandbox
+- This endpoint does not count against your rate limit

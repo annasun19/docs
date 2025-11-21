@@ -1,0 +1,119 @@
+---
+title: 'Create Test Booking'
+openapi: 'POST /api/sandbox/bookings'
+description: 'Create a test booking from an accepted bid'
+---
+
+Create a test booking in the sandbox environment. This simulates confirming a venue booking after accepting a bid.
+
+### Request Body
+
+<ParamField body="event_id" type="number" required>
+  The event ID for this booking
+</ParamField>
+
+<ParamField body="bid_id" type="number" required>
+  The accepted bid ID to convert into a booking
+</ParamField>
+
+<ParamField body="deposit_amount" type="number" required>
+  Deposit amount paid
+</ParamField>
+
+<ParamField body="total_amount" type="number" required>
+  Total booking amount
+</ParamField>
+
+<ParamField body="payment_schedule" type="array">
+  Array of payment milestones with amounts and due dates
+</ParamField>
+
+<ParamField body="booking_status" type="string">
+  Initial booking status (default: "confirmed")
+</ParamField>
+
+<ParamField body="contract_signed_date" type="string">
+  ISO 8601 date when contract was signed
+</ParamField>
+
+<ParamField body="cancellation_deadline" type="string">
+  ISO 8601 date for penalty-free cancellation
+</ParamField>
+
+### Response Format
+
+```json
+{
+  "booking_id": 5001,
+  "event_id": 789,
+  "bid_id": 1001,
+  "venue_name": "Austin Convention Center Hotel",
+  "booking_status": "confirmed",
+  "deposit_amount": 25000,
+  "total_amount": 125000,
+  "amount_remaining": 100000,
+  "payment_schedule": [
+    {
+      "milestone": "Deposit",
+      "amount": 25000,
+      "due_date": "2026-12-01",
+      "status": "paid"
+    },
+    {
+      "milestone": "Second Payment",
+      "amount": 50000,
+      "due_date": "2027-02-01",
+      "status": "pending"
+    },
+    {
+      "milestone": "Final Payment",
+      "amount": 50000,
+      "due_date": "2027-03-01",
+      "status": "pending"
+    }
+  ],
+  "contract_signed_date": "2025-11-21T16:00:00Z",
+  "cancellation_deadline": "2027-02-01T23:59:59Z",
+  "created_at": "2025-11-21T16:00:00Z"
+}
+```
+
+### Example Request
+
+```json
+{
+  "event_id": 789,
+  "bid_id": 1001,
+  "deposit_amount": 25000,
+  "total_amount": 125000,
+  "payment_schedule": [
+    {
+      "milestone": "Deposit",
+      "amount": 25000,
+      "due_date": "2026-12-01",
+      "status": "paid"
+    },
+    {
+      "milestone": "Second Payment",
+      "amount": 50000,
+      "due_date": "2027-02-01",
+      "status": "pending"
+    },
+    {
+      "milestone": "Final Payment",
+      "amount": 50000,
+      "due_date": "2027-03-01",
+      "status": "pending"
+    }
+  ],
+  "contract_signed_date": "2025-11-21T16:00:00Z",
+  "cancellation_deadline": "2027-02-01T23:59:59Z"
+}
+```
+
+### Booking Status Values
+
+- `confirmed` - Booking is confirmed with deposit paid
+- `pending` - Booking awaiting deposit or contract
+- `cancelled` - Booking was cancelled
+- `completed` - Event has taken place
