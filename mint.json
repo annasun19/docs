@@ -64,10 +64,6 @@
       "pages": ["introduction", "quickstart", "development"]
     },
     {
-      "group": "API Documentation",
-      "pages": ["api-reference/introduction"]
-    },
-    {
       "group": "Events",
       "pages": [
         "api-reference/endpoint/create-event",
